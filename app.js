@@ -1,13 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
-
 const { errors } = require('celebrate');
 
 const router = require('./routes');
-
 const limiter = require('./middlewares/rateLimiter');
-
 const { MONGO_URI } = require('./utils/config');
 
 const {
@@ -29,7 +26,13 @@ app.use(limiter);
 
 app.use(requestLogger);
 
-mongoose.connect(MONGO_URI);
+mongoose.connect(MONGO_URI)
+  .then(() => {
+    console.log('Connected to MongoDB');
+  })
+  .catch((err) => {
+    console.error('MongoDB connection error:', err);
+  });
 
 app.use('/', router);
 

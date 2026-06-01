@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
-const cors = require("cors")
+const cors = require('cors');
 const { errors } = require('celebrate');
 const router = require('./routes');
 const limiter = require('./middlewares/rateLimiter');
@@ -20,7 +20,7 @@ const PORT = 3000;
 
 app.use(express.json());
 
-app.use(cors ({
+app.use(cors({
   origin: [
     'http://localhost:5173',
   ],

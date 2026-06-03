@@ -22,6 +22,7 @@ app.use(express.json());
 
 app.use(cors({
   origin: [
+    "https://news-explorer.duckdns.org",
     'http://localhost:5173',
   ],
 }));
